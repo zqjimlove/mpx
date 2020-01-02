@@ -1,5 +1,6 @@
 const path = require('path')
 const MpxWebpackPlugin = require('@mpxjs/webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const mainSubDir = ''
 function resolveSrc (file) {
@@ -8,30 +9,6 @@ function resolveSrc (file) {
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
-}
-
-// 配置分包内抽取公共jsBundle，进一步降低主包体积
-// 抽取规则如下
-// 1. 模块被同一分包内2个或以上的chunk所引用
-// 2. 能够抽取的模块体积总和>=10kB
-// 3. 满足以上条件会将抽取后的bundle输出至dist的分包目录下
-function getSubPackagesCacheGroups (packages) {
-  let result = {}
-  packages.forEach((root) => {
-    result[root] = {
-      test: (module, chunks) => {
-        return chunks.every((chunk) => {
-          return (new RegExp(`^${root}\\/`)).test(chunk.name)
-        })
-      },
-      name: `${root}/bundle`,
-      minChunks: 2,
-      minSize: 10000,
-      priority: 100,
-      chunks: 'initial'
-    }
-  })
-  return result
 }
 
 const webpackConf = {
@@ -50,19 +27,10 @@ const webpackConf = {
         }
       },
       {
-        test: /\.mpx$/,
-        use: MpxWebpackPlugin.loader({
-          transRpx: {
-            mode: 'only',
-            comment: 'use rpx',
-            include: resolve('src')
-          }
-        })
-      },
-      {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/@mpxjs')]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/@mpxjs')],
+        exclude: [resolve('node_modules/@mpxjs/webpack-plugin')]
       },
       {
         test: /\.json$/,
@@ -82,28 +50,24 @@ const webpackConf = {
       }
     ]
   },
-  output: {
-    filename: '[name].js'
-  },
   optimization: {
-    runtimeChunk: {
-      name: 'bundle'
-    },
-    splitChunks: {
-      cacheGroups: {
-        main: {
-          name: 'bundle',
-          minChunks: 2,
-          chunks: 'initial'
-        },
-        // 分包内抽取bundle示例配置，传入分包root数组
-        // ...getSubPackagesCacheGroups(Array<subpackage root>)
-      }
-    }
+    usedExports: true,
+    sideEffects: true,
+    providedExports: true
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: resolveSrc('index.html'),
+      inject: true
+    })
+  ],
+  performance: {
+    hints: false
   },
   mode: 'none',
   resolve: {
-    extensions: ['.js', '.mpx'],
+    extensions: ['.js', '.mpx', '.vue'],
     modules: ['node_modules']
   }
 }

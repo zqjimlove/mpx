@@ -1,6 +1,6 @@
 # MPX TodoMVC Example
 
-> MPX is a library for building interactive wechat miniprogram interfaces. 
+> MPX is a library for building interactive wechat miniprogram interfaces.
 
 ## Learning MPX
 The [mpx website](https://didi.github.io/mpx/) is a great resource to get started.
@@ -31,8 +31,8 @@ npm run watch:cross
 
 扫码体验：
 
-微信：  
+微信：
 ![微信小程序二维码](./wx-qrcode.jpg)
 
-支付宝：  
+支付宝：
 ![支付宝小程序二维码](ali-qrcode.jpg)

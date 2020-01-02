@@ -7,7 +7,7 @@ const merge = require('webpack-merge')
 const program = require('commander')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MpxWebpackPlugin = require('@mpxjs/webpack-plugin')
-const mpxWebpackPluginConfig = require('./mpx.webpack.conf')
+const mpxWebpackPluginConfig = require('./mpx.plugin.conf')
 
 let webpackMainConfig = require('./webpack.conf')
 
@@ -15,24 +15,60 @@ const mainSubDir = ''
 function resolveDist (file, subPathStr = mainSubDir) {
   return path.resolve(__dirname, '../dist', subPathStr, file || '')
 }
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 const webpackConfigArr = []
 const userSelectedMode = 'wx'
 
-// 微信小程序需要拷贝project.config.json，如果npm script参数里有--wx，拷贝到/dist下，如果指定--wx，拷贝到/dist/wx下
-const webpackWxConfig = merge(webpackMainConfig, {
-  plugins: [
-    new CopyWebpackPlugin([
+const mpxLoaderConfig = {
+  transRpx: {
+    mode: 'only',
+    comment: 'use rpx',
+    include: resolve('src')
+  }
+}
+
+ const transWebModuleRules = [
+  {
+    test: /\.vue$/,
+    loader: 'vue-loader'
+  },
+  {
+    test: /\.mpx$/,
+    use: [
       {
-        from: path.resolve(__dirname, '../project.config.json'),
-        to: path.resolve(__dirname, '../dist/wx/project.config.json')
-      }
-    ])
-  ]
-})
+        loader: 'vue-loader',
+        options: {
+          transformToRequire: {
+            'mpx-image': 'src',
+            'mpx-audio': 'src',
+            'mpx-video': 'src'
+          }
+        }
+      },
+      MpxWebpackPlugin.loader(mpxLoaderConfig)
+    ]
+  },
+  {
+    test: /\.styl$/,
+    use: [
+      'style-loader',
+      'css-loader',
+      'stylus-loader'
+    ]
+  }
+]
+const transModuleRules = [
+  {
+    test: /\.mpx$/,
+    use: MpxWebpackPlugin.loader(mpxLoaderConfig)
+  }
+]
 
 // 支持的平台，若后续@mpxjs/webpack-plugin支持了更多平台，补充在此即可
-const supportedCrossMode = ['wx', 'ali', 'swan', 'qq', 'tt']
+const supportedCrossMode = ['wx', 'ali', 'swan', 'qq', 'tt', 'web']
 // 提供npm argv找到期望构建的平台，必须在上面支持的平台列表里
 const npmConfigArgvOriginal = (process.env.npm_config_argv && JSON.parse(process.env.npm_config_argv).original) || []
 const modeArr = npmConfigArgvOriginal.filter(item => typeof item === 'string').map(item => item.replace('--', '')).filter(item => supportedCrossMode.includes(item))
@@ -40,16 +76,23 @@ const modeArr = npmConfigArgvOriginal.filter(item => typeof item === 'string').m
 if (modeArr.length === 0) modeArr.push(userSelectedMode)
 
 modeArr.forEach(item => {
-  const webpackCrossConfig = merge(item === 'wx' ? webpackWxConfig : webpackMainConfig, {
+  const webpackCrossConfig = merge(webpackMainConfig, {
     name: item + '-compiler',
     output: {
       path: resolveDist('', item)
     },
+    module: { rules: item === 'web' ? transWebModuleRules : transModuleRules },
     plugins: [
       new MpxWebpackPlugin(Object.assign({
         mode: item,
         srcMode: userSelectedMode
-      }, mpxWebpackPluginConfig))
+      }, mpxWebpackPluginConfig)),
+      new CopyWebpackPlugin([
+        {
+          from: `static/${item}/**.*`,
+          to: `../../dist/${item}/[name].[ext]`
+        }
+      ])
     ]
   })
   webpackConfigArr.push(webpackCrossConfig)
@@ -105,6 +148,11 @@ function callback (err, stats) {
       chunkModules: false,
       entrypoints: false
     }) + '\n\n')
+  }
+
+  if (!program.watch && stats.hasErrors()) {
+    console.log(chalk.red('  Build failed with errors.\n'))
+    process.exit(1)
   }
 
   console.log(chalk.cyan('  Build complete.\n'))
