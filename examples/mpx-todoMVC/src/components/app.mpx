@@ -2,7 +2,7 @@
   <view class="todoapp">
     <view class="header">
       <view class="h1">todos</view>
-      <input class="new-todo" type="text" focus placeholder="What needs to be done?" wx:model="{{inputVal}}" bindconfirm="addTodo"/>
+      <input class="new-todo" type="text" focus placeholder="What needs to be done?" wx:model="{{inputVal}}" bindconfirm="addTodo" @keyup.enter="addTodo"/>
     </view>
 
     <view class="main" hidden="{{todos.length===0}}">
