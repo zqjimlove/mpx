@@ -7,6 +7,7 @@ const getPageName = require('../utils/get-page-name')
 const toPosix = require('../utils/to-posix')
 const addQuery = require('../utils/add-query')
 const parseComponent = require('../parser')
+const readJsonForSrc = require('../utils/read-json-for-src')
 
 module.exports = function (json, options, rawCallback) {
   const mode = options.mode
@@ -33,10 +34,6 @@ module.exports = function (json, options, rawCallback) {
 
   if (!json) {
     return callback()
-  }
-
-  if (json.src) {
-    return callback(new Error('[mpx loader][' + loaderContext.resource + ']: ' + 'json content must be inline in .mpx files!'))
   }
 
   try {
@@ -84,10 +81,18 @@ module.exports = function (json, options, rawCallback) {
                 mode,
                 defs
               )
-              if (parts.json) {
-                content = parts.json.content
+              const json = parts.json || {}
+              if (json.content) {
+                content = json.content
+              } else if (json.src) {
+                return readJsonForSrc(json.src, loaderContext, (content) => {
+                  callback(null, result, content)
+                })
               }
             }
+            callback(null, result, content)
+          },
+          (result, content, callback) => {
             try {
               content = JSON.parse(content)
             } catch (err) {
@@ -151,7 +156,6 @@ module.exports = function (json, options, rawCallback) {
               return callback(new Error(`Resources in ${resourcePath} and ${key} are registered with same page path ${pagePath}, which is not allowed!`))
             }
           }
-          if (pagesMap[resourcePath]) return callback()
           pagesMap[resourcePath] = pagePath
           localPagesMap[pagePath] = {
             resource: addQuery(resource, { page: true }),
@@ -210,8 +214,6 @@ module.exports = function (json, options, rawCallback) {
       const { resourcePath, queryObj } = parseRequest(resource)
       const parsed = path.parse(resourcePath)
       const componentId = parsed.name + hash(resourcePath)
-
-      if (componentsMap[resourcePath]) return callback()
 
       componentsMap[resourcePath] = componentId
 

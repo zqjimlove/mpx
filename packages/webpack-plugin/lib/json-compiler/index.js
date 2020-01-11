@@ -15,6 +15,7 @@ const getRulesRunner = require('../platform/index')
 const isUrlRequest = require('../utils/is-url-request')
 const getPageName = require('../utils/get-page-name')
 const addQuery = require('../utils/add-query')
+const readJsonForSrc = require('../utils/read-json-for-src')
 
 module.exports = function (raw) {
   // 该loader中会在每次编译中动态添加entry，不能缓存，否则watch不好使
@@ -135,10 +136,25 @@ module.exports = function (raw) {
     if (this.resourcePath.endsWith('.json.js')) {
       json = JSON.parse(mpxJSON.compileMPXJSONText({ source: raw, mode, defs, filePath: this.resourcePath }))
     } else {
-      json = JSON.parse(raw)
+      json = JSON.parse(raw || '{}')
     }
   } catch (err) {
     return callback(err)
+  }
+
+  if (pagesMap[resourcePath]) {
+    // page
+    if (!json.usingComponents) {
+      json.usingComponents = {}
+    }
+    if (!json.component && mode === 'swan') {
+      json.component = true
+    }
+  } else if (componentsMap[resourcePath]) {
+    // component
+    if (json.component !== true) {
+      json.component = true
+    }
   }
 
   if (json.usingComponents) {
@@ -307,10 +323,18 @@ module.exports = function (raw) {
                   mode,
                   defs
                 )
-                if (parts.json) {
-                  content = parts.json.content
+                const json = parts.json || {}
+                if (json.content) {
+                  content = json.content
+                } else if (json.src) {
+                  return readJsonForSrc(json.src, this, (content) => {
+                    callback(null, result, content)
+                  })
                 }
               }
+              callback(null, result, content)
+            },
+            (result, content, callback) => {
               try {
                 content = JSON.parse(content)
               } catch (err) {
