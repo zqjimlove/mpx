@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Page &amp; Component 新增的实例方法</title>
+    <meta name="description" content="">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/mpx/new/favicon.ico">
+    
+    <link rel="preload" href="/mpx/new/assets/css/0.styles.1552acbf.css" as="style"><link rel="preload" href="/mpx/new/assets/js/app.76c57d7d.js" as="script"><link rel="preload" href="/mpx/new/assets/js/2.53062a66.js" as="script"><link rel="preload" href="/mpx/new/assets/js/7.8a60cf40.js" as="script"><link rel="prefetch" href="/mpx/new/assets/js/10.31a7eb99.js"><link rel="prefetch" href="/mpx/new/assets/js/11.550c472d.js"><link rel="prefetch" href="/mpx/new/assets/js/12.be351307.js"><link rel="prefetch" href="/mpx/new/assets/js/13.64cc60f5.js"><link rel="prefetch" href="/mpx/new/assets/js/14.d638c201.js"><link rel="prefetch" href="/mpx/new/assets/js/15.749f3b4d.js"><link rel="prefetch" href="/mpx/new/assets/js/16.71c9e5ae.js"><link rel="prefetch" href="/mpx/new/assets/js/17.2c54ff85.js"><link rel="prefetch" href="/mpx/new/assets/js/18.630781fe.js"><link rel="prefetch" href="/mpx/new/assets/js/19.6a4e0429.js"><link rel="prefetch" href="/mpx/new/assets/js/20.07280f90.js"><link rel="prefetch" href="/mpx/new/assets/js/21.ee82fff3.js"><link rel="prefetch" href="/mpx/new/assets/js/22.9783afe4.js"><link rel="prefetch" href="/mpx/new/assets/js/23.cbadfd18.js"><link rel="prefetch" href="/mpx/new/assets/js/24.2d79341a.js"><link rel="prefetch" href="/mpx/new/assets/js/25.359d40d7.js"><link rel="prefetch" href="/mpx/new/assets/js/26.b4dec058.js"><link rel="prefetch" href="/mpx/new/assets/js/27.b9e906b0.js"><link rel="prefetch" href="/mpx/new/assets/js/28.f36ac4b6.js"><link rel="prefetch" href="/mpx/new/assets/js/29.c506576d.js"><link rel="prefetch" href="/mpx/new/assets/js/3.edee8f81.js"><link rel="prefetch" href="/mpx/new/assets/js/30.a7a3210f.js"><link rel="prefetch" href="/mpx/new/assets/js/31.71580966.js"><link rel="prefetch" href="/mpx/new/assets/js/32.19be5ee2.js"><link rel="prefetch" href="/mpx/new/assets/js/4.7282b5e3.js"><link rel="prefetch" href="/mpx/new/assets/js/5.481b7d1f.js"><link rel="prefetch" href="/mpx/new/assets/js/6.2d45864e.js"><link rel="prefetch" href="/mpx/new/assets/js/8.6c31f4dd.js"><link rel="prefetch" href="/mpx/new/assets/js/9.34c670d1.js">
+    <link rel="stylesheet" href="/mpx/new/assets/css/0.styles.1552acbf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/mpx/new/" class="home-link router-link-active"><img src="/mpx/new/logo.png" alt="" class="logo"> <!----></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/mpx/new/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><a href="/mpx/new/api/intro.html" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="/mpx/new/extends/intro.html" class="nav-link">
+  拓展
+</a></div><div class="nav-item"><a href="/mpx/new/version/" class="nav-link">
+  2.0迁移
+</a></div><div class="nav-item"><a href="/mpx/new/articles/" class="nav-link">
+  相关文章
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/mpx/new/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><a href="/mpx/new/api/intro.html" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="/mpx/new/extends/intro.html" class="nav-link">
+  拓展
+</a></div><div class="nav-item"><a href="/mpx/new/version/" class="nav-link">
+  2.0迁移
+</a></div><div class="nav-item"><a href="/mpx/new/articles/" class="nav-link">
+  相关文章
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/mpx/new/api/intro.html" class="sidebar-link">API参考</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#createapp" class="sidebar-link">createApp</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#createpage" class="sidebar-link">createPage</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#createcomponent" class="sidebar-link">createComponent</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#createstore" class="sidebar-link">createStore</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#topureobject" class="sidebar-link">toPureObject</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#observable" class="sidebar-link">observable</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#extendobservable" class="sidebar-link">extendObservable</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#watch-context-expr-handler" class="sidebar-link">watch(context, expr, handler)</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#mpx-use" class="sidebar-link">mpx.use</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/intro.html#mpx-mixin" class="sidebar-link">mpx.mixin</a></li></ul></li><li><a href="/mpx/new/api/instance-api.html" class="active sidebar-link">Page &amp; Component 新增的实例方法</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mpx/new/api/instance-api.html#this-watch" class="sidebar-link">this.$watch</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/instance-api.html#nexttick" class="sidebar-link">$nextTick</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/instance-api.html#updated" class="sidebar-link">$updated</a></li><li class="sidebar-sub-header"><a href="/mpx/new/api/instance-api.html#forceupdate" class="sidebar-link">$forceUpdate</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="page-component-新增的实例方法"><a href="#page-component-新增的实例方法" class="header-anchor">#</a> Page &amp; Component 新增的实例方法</h1> <h2 id="this-watch"><a href="#this-watch" class="header-anchor">#</a> this.$watch</h2> <p>用于动态添加watch，返回值是一个destroy函数，执行返回函数用于销毁watch</p> <h3 id="参数选项"><a href="#参数选项" class="header-anchor">#</a> 参数选项</h3> <ul><li><strong><code>this.$watch(expr | function, callback, options?: Object) : function</code></strong></li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>createComponent<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@mpxjs/core'</span>
+<span class="token function">createComponent</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    info<span class="token operator">:</span> <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">attached</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 微信小程序生命周期</span>
+    <span class="token comment">// 第一个参数为变量表达式</span>
+    <span class="token keyword">const</span> unwatch1 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$watch</span><span class="token punctuation">(</span><span class="token string">'info.name'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">val<span class="token punctuation">,</span> old</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>val<span class="token punctuation">,</span> old<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token comment">// deep: true,</span>
+      <span class="token comment">// sync: true,</span>
+      immediate<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token comment">// watch options</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token function">unwatch1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 销毁watch，不再观察</span>
+
+    <span class="token comment">// 第一个参数也可以为函数</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$watch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>info<span class="token punctuation">.</span>name
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">val<span class="token punctuation">,</span> old</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>val<span class="token punctuation">,</span> old<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token comment">// deep: true,</span>
+      <span class="token comment">// sync: true,</span>
+      immediate<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token comment">// watch options</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="nexttick"><a href="#nexttick" class="header-anchor">#</a> $nextTick</h2> <p>接收一个函数，保证在小程序渲染更新之后执行回调</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>createComponent<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@mpxjs/core'</span>
+<span class="token function">createComponent</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    info<span class="token operator">:</span> <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">attached</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>info<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token number">2</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'会在由name变化引起的视图更新之后执行'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="updated"><a href="#updated" class="header-anchor">#</a> $updated</h2> <p>已被废弃，请使用this.$nextTick代替</p> <h2 id="forceupdate"><a href="#forceupdate" class="header-anchor">#</a> $forceUpdate</h2> <h3 id="参数选项-2"><a href="#参数选项-2" class="header-anchor">#</a> 参数选项</h3> <ul><li><strong><code>this.$forceUpdate(data: Object, callback?: function)</code></strong></li></ul> <p>用于强制刷新视图，正常情况下<code>只有发生了变化的数据</code>才会被发送到视图层进行渲染。强制更新时，会将某些数据强制发送到视图层渲染，无论是否发生了变化</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>createComponent<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@mpxjs/core'</span>
+<span class="token function">createComponent</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    info<span class="token operator">:</span> <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">'a'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    age<span class="token operator">:</span> <span class="token number">100</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">attached</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 虽然不会修改age的值，但仍会触发重新渲染，并且会将age发送到视图层</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$forceUpdate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      age<span class="token operator">:</span> <span class="token number">100</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'视图更新后执行'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// 也可用于正常的数据修改，key支持path</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$forceUpdate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token string">'info.name'</span><span class="token operator">:</span> <span class="token string">'b'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'视图更新后执行'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="set、-remove"><a href="#set、-remove" class="header-anchor">#</a> $set、$remove</h3> <p>正常情况下，对一个响应式数据的新增属性或者删除数据操作是没法感知的，通过 <code>this.$set、this.$remove</code> 可以动态添加或删除属性，并且会触发观察器更新（视图更新 | watch回调）</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>createComponent<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@mpxjs/core'</span>
+<span class="token function">createComponent</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    info<span class="token operator">:</span> <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">'a'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  watch<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">'info.age'</span> <span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 当新增age属性之后执行</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'info'</span> <span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 当新增或删除属性之后都会执行</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">attached</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 新增age属性</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>info<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token comment">// 删除name属性</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$remove</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>info<span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/mpx/new/api/intro.html" class="prev">
+        API参考
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/mpx/new/assets/js/app.76c57d7d.js" defer></script><script src="/mpx/new/assets/js/2.53062a66.js" defer></script><script src="/mpx/new/assets/js/7.8a60cf40.js" defer></script>
+  </body>
+</html>
